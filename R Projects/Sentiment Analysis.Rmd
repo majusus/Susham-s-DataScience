@@ -1,0 +1,120 @@
+---
+title: "Sentiment Analysis"
+author: "majusus"
+date: "28/11/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Project – Sentiment Analysis
+
+The aim of this project is to build a sentiment analysis model which will allow us to categorize words based on their sentiments, that is whether they are positive, negative and also the magnitude of it. Before we start with our R project, let us understand sentiment analysis in detail.
+
+#What is Sentiment Analysis?
+
+Sentiment Analysis is a process of extracting opinions that have different polarities. By polarities, we mean positive, negative or neutral. It is also known as opinion mining and polarity detection. With the help of sentiment analysis, you can find out the nature of opinion that is reflected in documents, websites, social media feed, etc. Sentiment Analysis is a type of classification where the data is classified into different classes. These classes can be binary in nature (positive or negative) or, they can have multiple classes (happy, sad, angry, etc.).
+
+#Developing our Sentiment Analysis Model in R
+
+We will carry out sentiment analysis with R in this project. The dataset that we will use will be provided by the R package ‘janeaustenR’.
+
+In order to build our project on sentiment analysis, we will make use of the tidytext package that comprises of sentiment lexicons that are present in the dataset of ‘sentiments’.
+
+```{r Sentiment Dataset}
+require("tidytext")
+library(tidytext)
+sentiments
+```
+
+We will make use of three general purpose lexicons like –
+
+AFINN
+bing
+loughran
+These three lexicons make use of the unigrams. Unigrams are a type of n-gram model that consists of a sequence of 1 item, that is, a word collected from a given textual data. In the AFINN lexicon model scores the words in a range from -5 to 5. The increase in negativity corresponds the negative sentiment whereas an increase in positivity corresponds the positive one. The bing lexicon model on the other hand, classifies the sentiment into a binary category of negative or positive. And finally, the loughran model that performs analysis of the shareholder’s reports. In this project, we will make use of the bing lexicons to extract the sentiments out of our data. We can retrieve these lexicons using the get_sentiments() function. We can implement this as follows –
+
+
+```{r echo=FALSE}
+bing <- get_sentiments("bing")
+```
+
+#Performing Sentiment Analysis with the Inner Join
+
+In this step, we will import our libraries ‘janeaustenr’, ‘stringr’ as well as ‘tidytext’. The janeaustenr package will provide us with the textual data in the form of books authored by the novelist Jane Austen. Tidytext will allow us to perform efficient text analysis on our data. We will convert the text of our books into a tidy format using unnest_tokens() function.
+
+```{r echo=FALSE}
+require("stringr")
+require("janeaustenr")
+require("tidytext")
+require("dplyr")
+library(stringr)
+library(janeaustenr)
+library(dplyr)
+library(tidytext)
+
+tidy_data <- austen_books() %>%
+ group_by(book) %>%
+ mutate(linenumber = row_number(),
+   chapter = cumsum(str_detect(text, regex("^chapter [\\divxlc]", 
+                          ignore_case = TRUE)))) %>%
+ungroup() %>%
+unnest_tokens(word, text)
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
