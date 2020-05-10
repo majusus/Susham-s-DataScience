@@ -1,7 +1,7 @@
 # Susham-s-DataScience
 Data Science projects worked on by Susham Majumder
 
-R Projects: 
+R Projects: https://github.com/majusus/Susham-s-DataScience/tree/master/R%20Projects
 
 Excel Projects: TBU
 
